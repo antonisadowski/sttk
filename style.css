@@ -1,0 +1,86 @@
+.sttk-window {
+  position: fixed;
+  left: var(--x);
+  top: var(--y);
+  width: var(--width);
+  height: var(--height);
+  background: #202020;
+  border-top: 3em solid #181818;
+  border-radius: 12px 12px 0 0;
+}
+
+.sttk-window.maximized {
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0px;
+}
+
+.sttk-window-title {
+  position: absolute;
+  left: 50%;
+  top: -2em;
+  color: #fff;
+  transform: translate(-50%, 0);
+  user-select: none;
+}
+
+.sttk-window-close-button {
+  display: flex;
+  place-content: center;
+  position: absolute;
+  right: 1em;
+  top: -2em;
+  width: 1em;
+  height: 1em;
+  background: #404040;
+  border-radius: 50%;
+}
+
+.sttk-window-close-button path {
+  fill: #0000;
+  stroke: #fff;
+}
+
+.sttk-box {
+  display: flex;
+  flex-direction: var(--orientation);
+  gap: var(--spacing);
+}
+
+.sttk-grid {
+  display: grid;
+  grid-auto-rows: fit-content;
+  place-items: stretch;
+}
+
+.sttk-grid-item {
+  grid-column: calc(var(--column-index) + 1) / span var(--column-span);
+  grid-row: calc(var(--row-index) + 1) / span var(--row-span);
+}
+
+.sttk-label {
+  color: #fff;
+  user-select: var(--select);
+}
+
+.sttk-button {
+  border: 2px solid #000;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #404040;
+}
+
+.sttk-button:active {
+  background-color: #000;
+}
+
+.sttk-entry {
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #404040;
+}
