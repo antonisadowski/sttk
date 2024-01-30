@@ -82,6 +82,10 @@ export class Widget {
   show(element) {
     element.appendChild(this.#element);
   }
+
+  hide() {
+    this.#element.remove();
+  }
 }
 
 export class Window extends Widget {
@@ -180,7 +184,7 @@ export class Window extends Widget {
     element.style.opacity = "0";
     element.style.transform = `matrix(0.75, 0, 0, 0.75, 0, ${0.25 * Math.max(64, properties.height ?? 64)})`;
 
-    element.innerHTML += `<div export class=\"sttk-window-title\">${properties.title ?? ""}</div><svg export class=\"sttk-window-close-button\" width=\"8\" height=\"8\" viewBox=\"-4 -4 16 16\">\
+    element.innerHTML += `<div class=\"sttk-window-title\">${properties.title ?? ""}</div><svg class=\"sttk-window-close-button\" width=\"8\" height=\"8\" viewBox=\"-4 -4 16 16\">\
 <path d=\"M0,0l8,8m0,-8l-8,8\" />\
 </svg>`;
     element.querySelector(".sttk-window-close-button").addEventListener("click", () => this.close());
@@ -454,6 +458,33 @@ export class Grid extends Widget {
       child.widget.showAll(element);
       this.#element.appendChild(element);
     });
+  }
+}
+
+export class Element extends Widget {
+  #element = null;
+
+  get element() {
+    return this.#element.childNodes[0];
+  }
+  set element(element) {
+    this.hide();
+    this.#element.childNodes[0]?.remove?.();
+    this.#element.appendChild(element);
+  }
+
+  constructor(properties = {}) {
+    const element = document.createElement("div");
+    super(element);
+    this.#element = element;
+
+    for (const property in properties) {
+      this[property] = properties[property];
+    }
+  }
+
+  showAll(element) {
+    this.show(element);
   }
 }
 
